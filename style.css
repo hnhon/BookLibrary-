@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Raleway&display=swap');
+
+:root {
+    --nav-color: #33415c;
+    --nav-button: #f6bd60;
+    --nav-button-hover: #fab13b;
+    --nav-font-family: 'Raleway', sans-serif;
+    --nav-font-color: #edf2f4;
+    --footer-color: #33415c;
+    --footer-font-color: #edf2f4;
+    --footer-font-family: 'Noto Sans JP', sans-serif;
+    --card-border-color: #33415c;
+    --book-font-family: 'Raleway', sans-serif;
+    --delete-btn-color: #f6bd60;
+    --delete-btn-font-color: #edf2f4;
+    --delete-btn-hover: #fab13b;
+    --pop-up-color: #33415ca1;
+    --form-color: #33415c;
+    --form-font-color: #edf2f4;
+    --form-input-border: #f6bd60;
+    --form-button-color: #f6bd60;
+    --form-button-font-color: #edf2f4;
+    --form-button-hover: #fab13b;
+    --pop-up-font: 'Raleway', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--nav-color);
+    height: 100px;
+}
+
+.nav .name {
+    margin: 20px;
+    font-family: var(--nav-font-family);
+    font-size: 2rem;
+    color: var(--nav-font-color)
+}
+
+.nav .add-book {
+    background: var(--nav-button);
+    color: var(--nav-font-color);
+    font-family: var(--nav-font-family);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 20px;
+    transition: 200ms;
+}
+
+.nav .add-book:hover {
+    transform: scale(1.1);
+    background-color: var(--nav-button-hover);
+}
+
+.display-library {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+    max-width: 90%;
+    gap: 70px;
+    margin: 10px auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+}
+
+.card {
+    border: 1px solid var(--card-border-color);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--book-font-family);
+}
+
+.book-information {
+    margin-top: 10px;
+}
+
+.book-information .title {
+    margin-bottom: 20px;
+}
+
+.book-information .author {
+    margin-bottom: 20px;
+} 
+
+.delete-btn {
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: var(--delete-btn-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: var(--book-font-family);
+    color: var(--delete-btn-font-color);
+    transition: 200ms;
+}
+
+.delete-btn:hover {
+    background-color: var(--delete-btn-hover);
+    transform: scale(1.1);
+}
+
+.pop-up {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--pop-up-color);
+}
+
+.pop-up form {
+    background-color: var(--form-color);
+    color: var(--form-font-color);
+    border-radius: 15px;
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: calc((100vh - 400px) / 2);
+    left: calc((100vw - 300px) / 2); 
+    font-family: var(--pop-up-font);
+}
+
+.pop-up form h2 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.pop-up form input {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    height: 2rem;
+    font-size: 1.2rem;
+    width: 50%;
+    margin-left: calc(50% / 2);
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.pop-up form input:focus {
+    border: 2px solid var(--form-input-border)
+}
+
+.pop-up form button {
+    display: block;
+    border-radius: 5px;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    font-size: 1.2rem;
+    width: 30%;
+    margin-left: calc((70%) / 2);
+    cursor: pointer;
+    background-color: var(--form-button-color);
+    color: var(--form-button-font-color);
+}
+
+.pop-up form button:hover {
+    background-color: var(--form-button-hover);
+}
+
+.footer {
+    height: 40px;
+    background-color: var(--footer-color);
+    color: var(--footer-font-color);
+    font-family: var(--footer-font-family) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
