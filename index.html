@@ -12,15 +12,16 @@
             <img src="" alt="">
             Library with Firebase
         </div>
-        <button class="add-book">Add a Book</button>
-        <div class="pop-up">
-            <form action="#">
+        <button class="add-book" id="navNewBtn">Add a Book</button>
+        <div class="pop-up not-display">
+            <form>
                 <h2>Add New Book</h2>
                 <img src="" alt="">
-                <input type="text" id="title" placeholder="Title">
-                <input type="text" id="author" placeholder="Author">
-                <input type="number" id="pages" placeholder="Pages">
-                <button type="submit">Add</button>
+                <input type="text" id="title" name='title' id="title" placeholder="Title">
+                <input type="text" id="author" name='author' id="author" placeholder="Author">
+                <input type="number" id="pages" name='pages' id="pages" placeholder="Pages">
+                <div class="is-read">Read? <input type="checkbox" name="isRead" id="isRead"> </div>
+                <button type="submit" id='submitNewBook'>Add</button>
             </form>
         </div>
     </nav>
@@ -37,18 +38,6 @@
                 <span class="reading-message-text">Read</span>
             </div>
             <button class="delete-btn">Delete</button>
-        </div>
-        <div class="card">
-            <div class="card-header">Title</div>
-        </div>
-        <div class="card">
-            <div class="card-header">Title</div>
-        </div>
-        <div class="card">
-            <div class="card-header">Title</div>
-        </div>
-        <div class="card">
-            author
         </div>
     </section>
 

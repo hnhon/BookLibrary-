@@ -71,7 +71,7 @@
     grid-auto-rows: 300px;
     max-width: 90%;
     gap: 70px;
-    margin: 10px auto;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 60px;
@@ -80,6 +80,7 @@
 .card {
     border: 1px solid var(--card-border-color);
     border-radius: 15px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -98,6 +99,10 @@
 .book-information .author {
     margin-bottom: 20px;
 } 
+
+.reading-message-display input {
+    margin-right: 3px;
+}
 
 .delete-btn {
     margin-bottom: 10px;
@@ -118,7 +123,7 @@
 }
 
 .pop-up {
-    display: none;
+    /* display: none; */
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -163,6 +168,20 @@
     border: 2px solid var(--form-input-border)
 }
 
+.pop-up .is-read {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    width: 80px;
+    margin-left: calc((100% - 80px) / 2);
+}
+
+.pop-up .is-read input {
+    margin: 0;
+    height: 20px;
+    width: 20px;
+    align-content: center;
+}
+
 .pop-up form button {
     display: block;
     border-radius: 5px;
@@ -179,6 +198,10 @@
 
 .pop-up form button:hover {
     background-color: var(--form-button-hover);
+}
+
+.not-display {
+    display: none;
 }
 
 .footer {
