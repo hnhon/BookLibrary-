@@ -6,11 +6,24 @@ let bookArr = []
 submitNewBook.addEventListener('click', handleSubmitNewBook);
 navNewBtn.addEventListener('click', handleNavNewBtn);
 
-function handleNavNewBtn () {
+function handleDelete(e) {
+    let id = e.target.getAttribute('data')
+    let deleteCard;
+    document.querySelectorAll('.card').forEach(card => {
+        if (card.getAttribute('data') === id) {
+            deleteCard = card
+        }
+    });
+    displayLibrary.removeChild(deleteCard)
+    newBookArr = bookArr.filter(book => book.id !== parseInt(id))
+    bookArr = newBookArr;
+}
+
+function handleNavNewBtn() {
     document.querySelector('.pop-up').classList.remove('not-display')
 }
 
-function handleSubmitNewBook (e) {
+function handleSubmitNewBook(e) {
     //Prevent defaule
     e.preventDefault();
     //Get submit value
@@ -18,21 +31,22 @@ function handleSubmitNewBook (e) {
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const isRead = document.getElementById('isRead').checked;
+    const id = Date.now();
     //Add the new book to array
-    let newBook = new Book(author, title, pages, isRead)
+    let newBook = new Book(author, title, pages, isRead, id)
     bookArr = [...bookArr, newBook]
     //Display the book on card
-    let card = createNewCard(newBook.title, newBook.author, newBook.pages, newBook.isRead)
+    let card = createNewCard(newBook.title, newBook.author, newBook.pages, newBook.isRead, newBook.id)
     displayLibrary.appendChild(card)
     //Close pop-up
     document.querySelector('.pop-up').classList.add('not-display')
 }
 
-function createNewCard (title, author, pages, isRead) {
+function createNewCard(title, author, pages, isRead, id) {
     let card = document.createElement('div')
     card.classList.add('card')
-    card.setAttribute('data-title', title)
-    
+    card.setAttribute('data', id)
+
     let bookInformation = document.createElement('div')
     bookInformation.classList.add('book-information')
     let h3Title = document.createElement('h3')
@@ -53,7 +67,7 @@ function createNewCard (title, author, pages, isRead) {
     let checkbox = document.createElement('input')
     checkbox.setAttribute('type', 'checkbox')
     let readingMessageText = document.createElement('span')
-    readingMessageText.innerText = isRead? 'Read' : 'Not Read'
+    readingMessageText.innerText = isRead ? 'Read' : 'Not Read'
     readingMessageText.classList.add('reading-message-text')
     readingMsgDisplay.appendChild(checkbox)
     readingMsgDisplay.appendChild(readingMessageText)
@@ -61,6 +75,8 @@ function createNewCard (title, author, pages, isRead) {
     let button = document.createElement('button')
     button.classList.add('delete-btn')
     button.innerText = 'Delete'
+    button.setAttribute('data', id)
+    button.addEventListener('click', e => handleDelete(e))
 
     card.appendChild(bookInformation);
     card.appendChild(readingMsgDisplay);
@@ -69,15 +85,13 @@ function createNewCard (title, author, pages, isRead) {
     return card
 }
 
-function Book(author, title, pages, isRead) {
+function Book(author, title, pages, isRead, id) {
     this.author = author;
     this.title = title;
     this.pages = pages;
     this.isRead = isRead;
+    this.id = id;
     this.info = () => {
         return (`${title} by ${author}, ${pages} pages, ${isRead}`)
     }
 }
-
-const book1 = new Book('J.K Rowling', 'Harry Potter', 144, 'not read yet')
-console.log(book1.info())
