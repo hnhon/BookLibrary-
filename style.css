@@ -225,13 +225,25 @@ body {
     background-color: var(--footer-color);
     color: var(--footer-font-color);
     font-family: var(--footer-font-family) ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer .follow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer .follow img {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
 }
 
 @media (max-width: 1000px) {
@@ -242,7 +254,7 @@ body {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .display-library {
         grid-template-columns: repeat(2, 1fr);
         gap: 50px;
