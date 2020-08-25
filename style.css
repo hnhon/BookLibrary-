@@ -52,6 +52,13 @@ body {
     font-size: 2rem;
     color: var(--nav-font-color);
     display: flex;
+    align-items: center;
+}
+
+.nav .name img {
+    width: 40px;
+    height: 40px;
+    margin-right: 2px;
 }
 
 .nav .add-book {
