@@ -2,7 +2,7 @@ const submitNewBook = document.querySelector('#submitNewBook');
 const displayLibrary = document.querySelector('.display-library');
 const navNewBtn = document.querySelector('#navNewBtn');
 const navNewBtnClose = document.querySelector('.close-new-form');
-let bookArr = [];
+let bookArr = localStorage.getItem('books') == null? [] : JSON.parse(localStorage.getItem('books'));
 let storedBooks = localStorage.getItem('books')
 
 init();
@@ -12,8 +12,7 @@ navNewBtn.addEventListener('click', handleNavNewBtn);
 navNewBtnClose.addEventListener('click', e => handleCloseForm(e));
 
 function init () {
-    console.log(storedBooks)
-    if (storedBooks !== null) {
+    if (storedBooks !== null && storedBooks !== []) {
         let renderBooks = JSON.parse(storedBooks);
         renderBooks.forEach(book => {
             let card = createNewCard(book.title, book.author, book.pages, book.isRead, book.id)
