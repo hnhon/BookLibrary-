@@ -1,10 +1,31 @@
 const submitNewBook = document.querySelector('#submitNewBook');
 const displayLibrary = document.querySelector('.display-library');
 const navNewBtn = document.querySelector('#navNewBtn');
-let bookArr = []
+const navNewBtnClose = document.querySelector('.close-new-form');
+let bookArr = [];
+let storedBooks = localStorage.getItem('books')
+
+init();
 
 submitNewBook.addEventListener('click', handleSubmitNewBook);
 navNewBtn.addEventListener('click', handleNavNewBtn);
+navNewBtnClose.addEventListener('click', e => handleCloseForm(e));
+
+function init () {
+    console.log(storedBooks)
+    if (storedBooks !== null) {
+        let renderBooks = JSON.parse(storedBooks);
+        renderBooks.forEach(book => {
+            let card = createNewCard(book.title, book.author, book.pages, book.isRead, book.id)
+            displayLibrary.appendChild(card)
+        })
+    }
+}
+
+function handleCloseForm (e) {
+    e.preventDefault();
+    document.querySelector('.pop-up').classList.add('not-display')
+}
 
 function handleReadStatus (e) {
     let displayText = e.target.parentNode.children[1];
@@ -15,6 +36,7 @@ function handleReadStatus (e) {
             book.isRead = !book.isRead
         }
     })
+    localStorage.setItem('books', JSON.stringify(bookArr))
 }
 
 function handleDelete(e) {
@@ -28,6 +50,7 @@ function handleDelete(e) {
     displayLibrary.removeChild(deleteCard)
     newBookArr = bookArr.filter(book => book.id !== parseInt(id))
     bookArr = newBookArr;
+    localStorage.setItem('books', JSON.stringify(bookArr))
 }
 
 function handleNavNewBtn() {
@@ -46,6 +69,7 @@ function handleSubmitNewBook(e) {
     //Add the new book to array
     let newBook = new Book(author, title, pages, isRead, id)
     bookArr = [...bookArr, newBook]
+    localStorage.setItem('books', JSON.stringify(bookArr))
     //Display the book on card
     let card = createNewCard(newBook.title, newBook.author, newBook.pages, newBook.isRead, newBook.id)
     displayLibrary.appendChild(card)
