@@ -46,7 +46,6 @@ function handleSubmitNewBook(e) {
     //Add the new book to array
     let newBook = new Book(author, title, pages, isRead, id)
     bookArr = [...bookArr, newBook]
-    console.log(bookArr)
     //Display the book on card
     let card = createNewCard(newBook.title, newBook.author, newBook.pages, newBook.isRead, newBook.id)
     displayLibrary.appendChild(card)
@@ -106,7 +105,4 @@ function Book(author, title, pages, isRead, id) {
     this.pages = pages;
     this.isRead = isRead;
     this.id = id;
-    this.info = () => {
-        return (`${title} by ${author}, ${pages} pages, ${isRead}`)
-    }
 }
