@@ -6,6 +6,17 @@ let bookArr = []
 submitNewBook.addEventListener('click', handleSubmitNewBook);
 navNewBtn.addEventListener('click', handleNavNewBtn);
 
+function handleReadStatus (e) {
+    let displayText = e.target.parentNode.children[1];
+    displayText.textContent = e.target.checked? 'Read' : 'Not read';
+    let id = e.target.getAttribute('data')
+    bookArr.forEach(book=> {
+        if (book.id === parseInt(id)) {
+            book.isRead = !book.isRead
+        }
+    })
+}
+
 function handleDelete(e) {
     let id = e.target.getAttribute('data')
     let deleteCard;
@@ -35,6 +46,7 @@ function handleSubmitNewBook(e) {
     //Add the new book to array
     let newBook = new Book(author, title, pages, isRead, id)
     bookArr = [...bookArr, newBook]
+    console.log(bookArr)
     //Display the book on card
     let card = createNewCard(newBook.title, newBook.author, newBook.pages, newBook.isRead, newBook.id)
     displayLibrary.appendChild(card)
@@ -66,8 +78,11 @@ function createNewCard(title, author, pages, isRead, id) {
     readingMsgDisplay.classList.add('reading-message-display')
     let checkbox = document.createElement('input')
     checkbox.setAttribute('type', 'checkbox')
+    checkbox.setAttribute('data', id);
+    checkbox.addEventListener('click', e => handleReadStatus(e))
     let readingMessageText = document.createElement('span')
     readingMessageText.innerText = isRead ? 'Read' : 'Not Read'
+    checkbox.checked = isRead? true : false;
     readingMessageText.classList.add('reading-message-text')
     readingMsgDisplay.appendChild(checkbox)
     readingMsgDisplay.appendChild(readingMessageText)
