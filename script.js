@@ -56,6 +56,19 @@ function handleNavNewBtn() {
     document.querySelector('.pop-up').classList.remove('not-display')
 }
 
+function isFormValid (t, a, p) {
+    if (t.lengh <= 0 || t === undefined || t === '') {
+        
+        return false
+    } else if (a.lengh <= 0 || a === undefined || a === '') {
+        return false
+    } else if (p.lengh <= 0 || p === undefined || p === '')  {
+        return false
+    } else {
+        return true
+    }
+}
+
 function handleSubmitNewBook(e) {
     //Prevent defaule
     e.preventDefault();
@@ -64,6 +77,11 @@ function handleSubmitNewBook(e) {
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const isRead = document.getElementById('isRead').checked;
+
+    if (!isFormValid(title, author, pages)) {
+        return
+    }
+
     const id = Date.now();
     //Add the new book to array
     let newBook = new Book(author, title, pages, isRead, id)
